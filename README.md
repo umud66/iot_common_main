@@ -11,6 +11,7 @@
 - GPIO 端口绑定
 - 读写分离的设备模型
 - 星期定时器
+- 内置继电器 / 造浪泵 / 温度计模块
 - 后续共享驱动市场
 
 ## 当前架构
@@ -60,6 +61,7 @@
 - 驱动定义查询 / 设备驱动实例与 GPIO 绑定接口骨架
 - 驱动实例到运行时 capability 的映射
 - GPIO 冲突校验与继电器默认上电状态校验
+- 造浪泵模块的定速 / 线性变速 / 正弦波 / 贝塞尔波 / 随机波 / 脉冲波控制
 
 关于账户设置的当前决策：
 
@@ -137,8 +139,9 @@ go run .
   - `report`
   - `bootstrap`
   - `relay <targetId> <on|off|toggle>`
-  - `pwm <targetId> <duty>`
-  - `temp <targetId> <value>`
+- `pwm <targetId> <duty>`
+- `wave <targetId> <direct|linearRamp|sineWave|bezierWave|randomWave|pulseWave|stop>`
+- `temp <targetId> <value>`
   - `command <json>`
 - 仿真端会自动读取设备当前定时器，并在命中时间时本地执行并打印 `[定时器]` 日志
 
